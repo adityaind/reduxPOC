@@ -5,8 +5,6 @@ export const SUBTRACT = 'SUBTRACT';
 export const STORE_RESULT = 'STORE_RESULT';
 export const DELETE_RESULT = 'DELETE_RESULT';
 
-
-//action creator
 export const increment = () => {
     return {
         type: INCREMENT
@@ -19,28 +17,36 @@ export const decrement = () => {
     };
 };
 
-export const add = (value) => {
+export const add = ( value ) => {
     return {
         type: ADD,
         val: value
     };
 };
 
-export const subtract = (value) => {
+export const subtract = ( value ) => {
     return {
         type: SUBTRACT,
         val: value
     };
 };
 
-export const storeResult = (res) => {
+export const saveResult = ( res ) => {
     return {
         type: STORE_RESULT,
         result: res
     };
+}
+//how async code can work with redux using thunk
+export const storeResult = ( res ) => {
+    return dispatch => {
+        setTimeout( () => {
+            dispatch(saveResult(res));
+        }, 2000 );
+    }
 };
 
-export const deleteResult = (resElId) => {
+export const deleteResult = ( resElId ) => {
     return {
         type: DELETE_RESULT,
         resultElId: resElId
